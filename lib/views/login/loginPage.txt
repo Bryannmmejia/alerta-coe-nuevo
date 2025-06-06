@@ -1,0 +1,170 @@
+import 'dart:convert';
+
+import 'package:alertacoe/helper/applicationDefault.dart';
+import 'package:alertacoe/helper/myWidgets.dart';
+import 'package:alertacoe/helper/networkHelper.dart';
+import 'package:alertacoe/models/HttpResponseModel.dart';
+import 'package:alertacoe/views/widget/bezierContainer.dart';
+import 'package:flutter/material.dart';
+
+import '../../application_localizations.dart';
+import '../HomePage.dart';
+import '../../services/HttpRequestHelper.dart';
+
+var wGet = new MyWidgets();
+var app = ApplicationDefault();
+var http = HttpRequestHelper();
+
+class LoginPage extends StatefulWidget {
+  LoginPage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void fnLogin() async {
+    try {
+      if (!await NetworkHelper.getInstance().checkConnection()) {
+        app.ackAlert(context, "No hay conexión internet");
+        return null;
+      }
+      String email = emailController.text;
+      if (email.isEmpty) {
+        app.ackAlert(
+            this.context,
+            ApplicationLocalizations.of(context)
+                .translate("login_text_provide_email"));
+        return;
+      }
+      if (passwordController.text.isEmpty) {
+        app.ackAlert(
+            this.context,
+            ApplicationLocalizations.of(context)
+                .translate("login_text_provide_password"));
+        return;
+      }
+      wGet.onLoading(
+          context, ApplicationLocalizations.of(context).translate("wait_text"));
+      Map<dynamic, dynamic> obj = {
+        'isWeb': false,
+        'username': email,
+        'password': passwordController.text,
+        'lang': ApplicationLocalizations.of(context).appLocale
+      };
+      var jon = jsonEncode(obj);
+      var response =
+          await http.loginRequest("authentication/authentication", jon);
+      var result = HttpResponseModel.fromJson(json.decode(response.body));
+      if (result.httpStatus == 200) {
+        var prefs = await app.getPreference();
+        List<String> logon = [
+          result.data['username'],
+          result.data['authToken'],
+          result.data['userType'],
+          result.data['staffData']["fullName"],
+          //result.data['lang']
+        ];
+        prefs.setStringList("logon_data", logon);
+        await prefs.setBool('loggedIn', true);
+        Navigator.pop(this.context);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomePageView()));
+      } else {
+        Navigator.pop(this.context);
+        app.ackAlert(this.context, result.message);
+      }
+    } catch (e) {
+      print(e);
+      Navigator.pop(this.context);
+      app.ackAlert(this.context, "Error");
+    }
+  }
+
+  Widget _createAccountLabel() {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 20),
+        padding: EdgeInsets.all(15),
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[],
+        ),
+      ),
+    );
+  }
+
+  Widget _emailPasswordWidget() {
+    return Column(
+      children: <Widget>[
+        wGet.entryField(
+            ApplicationLocalizations.of(context)
+                .translate("login_text_username"),
+            emailController,
+            TextInputType.text,
+            context,
+            Icon(Icons.person)),
+        wGet.entryField(
+            ApplicationLocalizations.of(context)
+                .translate("login_text_password"),
+            passwordController,
+            TextInputType.text,
+            context,
+            Icon(Icons.lock),
+            isPassword: true),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
+        body: Container(
+      height: height,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+              top: -height * .15,
+              right: -MediaQuery.of(context).size.width * .4,
+              child: BezierContainer()),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: height * .2),
+                  wGet.appName(context),
+                  SizedBox(height: 80),
+                  _emailPasswordWidget(),
+                  SizedBox(height: 20),
+                  wGet.submitButton(
+                      context,
+                      ApplicationLocalizations.of(context)
+                          .translate("login_text_btn"),
+                      fnLogin),
+                  SizedBox(height: height * .055),
+                  _createAccountLabel(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    ));
+  }
+}

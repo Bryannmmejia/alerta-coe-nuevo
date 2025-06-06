@@ -1,0 +1,97 @@
+// import 'package:alertacoe/helper/applicationDefault.dart';
+// import 'package:alertacoe/helper/htmlPage.dart';
+// import 'package:alertacoe/helper/myWidgets.dart';
+// import 'package:alertacoe/viewModels/ProfileViewModel.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import '../../helper/globalState.dart';
+//
+// import '../../application_localizations.dart';
+// import '../../helper/myWidgets.dart';
+//
+// var wGet = new MyWidgets();
+//
+// class ProfilePageView extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MultiProvider(
+//         providers: [
+//           ChangeNotifierProvider<ProfileViewModel>(
+//               create: (context) => ProfileViewModel())
+//         ],
+//         child: Consumer<ProfileViewModel>(builder: (context, provider, child) {
+//           return ProfilePage();
+//         }));
+//   }
+// }
+//
+// class ProfilePage extends StatefulWidget {
+//   @override
+//   _ProfilePageState createState() => _ProfilePageState();
+// }
+//
+// class _ProfilePageState extends State<ProfilePage> {
+//   _ProfilePageState();
+//
+//   ProfileViewModel vm;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     init();
+//   }
+//
+//   init() async {
+//     try {
+//       Provider.of<ProfileViewModel>(context, listen: false).getProfile(
+//           GlobalState.getInstance().logonResult.token,
+//           {"username": GlobalState.getInstance().logonResult.username});
+//     } catch (e) {
+//       //print(e);
+//     }
+//   }
+//
+//   refreshData() async {
+//     try {
+//       wGet.onLoading(
+//           context, ApplicationLocalizations.of(context).translate("wait_text"));
+//       await this.vm.getProfile(GlobalState.getInstance().logonResult.token,
+//           {"username": GlobalState.getInstance().logonResult.username});
+//     } catch (e) {
+//       //print(e);
+//     } finally {
+//       Navigator.pop(this.context);
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext c) {
+//     this.vm = Provider.of<ProfileViewModel>(context, listen: true);
+//     return Scaffold(
+//       body: Container(
+//         width: MediaQuery.of(context).size.width,
+//         child: Column(
+//           children: [
+//             Expanded(
+//                 child: HtmlPage(
+//               html: this.vm.html,
+//             ))
+//           ],
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () => refreshData(),
+//         child: Icon(
+//           Icons.refresh,
+//           color: Colors.white,
+//           size: 30,
+//         ),
+//         backgroundColor: Colors.redAccent,
+//         tooltip: 'Refresh',
+//         elevation: 5,
+//         splashColor: Colors.grey,
+//       ),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+//     );
+//   }
+// }

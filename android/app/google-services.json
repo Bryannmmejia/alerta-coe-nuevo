@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "341972153352",
+    "firebase_url": "https://alertacoe-709ca-default-rtdb.firebaseio.com",
+    "project_id": "alertacoe-709ca",
+    "storage_bucket": "alertacoe-709ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341972153352:android:83a8d0f765b5f15c2e4dbd",
+        "android_client_info": {
+          "package_name": "com.gob.coe.alertaCOE"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341972153352-nm01rao7spbhg3me5c268hlce008ck8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHEOnzHxfay1PehhmM6Fx-sLA2mAVVG-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341972153352-nm01rao7spbhg3me5c268hlce008ck8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
