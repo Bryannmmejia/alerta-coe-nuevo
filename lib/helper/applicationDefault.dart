@@ -131,12 +131,12 @@ class ApplicationDefault {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Enter current team'),
-          content: new Row(
+          content: Row(
             children: [
-              new Expanded(
-                  child: new TextField(
+                              Expanded(
+                  child: TextField(
                 autofocus: true,
-                decoration: new InputDecoration(
+                                  decoration: InputDecoration(
                     labelText: 'Team Name', hintText: 'eg. Juventus F.C.'),
                 onChanged: (value) {
                   teamName = value;

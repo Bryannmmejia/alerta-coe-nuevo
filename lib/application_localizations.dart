@@ -32,6 +32,9 @@ class ApplicationLocalizations {
   String? translate(String jsonkey) {    
     return _localizedStrings[jsonkey];
   }
+
+  // Getter para acceder al locale
+  String get locale => this.appLocale;
 }
 
 class AppLocalizationDelegate

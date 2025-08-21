@@ -17,8 +17,8 @@ class ChatDetailPage extends StatefulWidget {
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
   List<ChatMessageModel> messages = [];
-  ScrollController _scrollController = new ScrollController();
-  TextEditingController _msgController = new TextEditingController();
+  ScrollController _scrollController = ScrollController();
+  TextEditingController _msgController = TextEditingController();
   late eventify.Listener listener;
 
   void callback(dynamic ev, Object cxt) {
@@ -46,7 +46,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           if (item["room"]["fromUser"] == GlobalState.getInstance().logonResult.username) {
             _type = "sender";
           }
-          var info = new ChatMessageModel(
+          var info = ChatMessageModel(
               message: item["message"],
               msgType: item["msgType"],
               type: _type,

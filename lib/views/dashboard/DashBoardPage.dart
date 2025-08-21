@@ -20,7 +20,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final TextStyle whiteText = TextStyle(color: Colors.white);
   String _url = "";
   final app = ApplicationDefault();
-  final _http = new HttpRequestHelper();
+  final _http = HttpRequestHelper();
   dynamic _weather;
   bool loading = true;
 

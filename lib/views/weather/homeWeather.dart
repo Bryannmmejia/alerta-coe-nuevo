@@ -39,8 +39,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
     return Container(
       constraints: BoxConstraints.expand(),
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
             colors: [
               weather_background,
               kPrimaryColor,

@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Timer(
             Duration(seconds: 3),
             () => Navigator.of(context).pushReplacement(
-                new MaterialPageRoute(builder: (context) => new LoginPage())));
+                MaterialPageRoute(builder: (context) => LoginPage())));
       }
     } catch (e) {
       app.ackAlert(context, "Error", title: '');

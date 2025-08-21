@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:alertacoe/helper/constants.dart';
 import 'package:alertacoe/helper/globalState.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:alertacoe/helper/applicationDefault.dart';
 import '../../views/HomePage.dart';
@@ -22,8 +21,8 @@ class SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
 
   startTime() async {
-    var _duration = new Duration(seconds: 3);
-    return new Timer(_duration, navigationPage);
+    var _duration = Duration(seconds: 3);
+    return Timer(_duration, navigationPage);
   }
 
   void navigationPage() async {
@@ -34,7 +33,7 @@ class SplashScreenState extends State<SplashScreen>
         List<String>? logonResultString =
             prefs.getStringList(GlobalState.getInstance().logonDataKey);
         List<dynamic> logonResult = logonResultString != null ? List<dynamic>.from(logonResultString) : [];
-        GlobalState.getInstance().logonResult = new LogonData(
+        GlobalState.getInstance().logonResult = LogonData(
           provinceId: logonResult[2],
           fullName: logonResult[3],
           token: logonResult[1],
@@ -62,12 +61,12 @@ class SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(
+    animationController = AnimationController(
       vsync: this,
-      duration: new Duration(seconds: 3),
+      duration: Duration(seconds: 3),
     );
     animation =
-        new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+        CurvedAnimation(parent: animationController, curve: Curves.easeOut);
 
     animation.addListener(() => this.setState(() {}));
     animationController.forward();
@@ -84,13 +83,13 @@ class SplashScreenState extends State<SplashScreen>
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(bottom: 30.0),
-                child: new Image.asset(
+                child: Image.asset(
                   'assets/images/logo-coe-96x96.png',
                   height: 60.0,
                   fit: BoxFit.scaleDown,
@@ -98,7 +97,7 @@ class SplashScreenState extends State<SplashScreen>
               )
             ],
           ),
-          new Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(

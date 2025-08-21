@@ -20,14 +20,14 @@ class ProvinceDetailsPageState extends State<ProvinceDetailsPage> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(100.0)),
       ),
       builder: (BuildContext bc) {
-        return new Container(
+        return Container(
           height: MediaQuery.of(widget.buildContext).size.height * 0.4,
           width: MediaQuery.of(widget.buildContext).size.width,
           color: Colors.transparent,
-          child: new Container(
-            decoration: new BoxDecoration(
+                      child: Container(
+                          decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: new BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                 topLeft: const Radius.circular(10.0),
                 topRight: const Radius.circular(10.0),
               ),

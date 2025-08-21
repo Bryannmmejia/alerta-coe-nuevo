@@ -59,7 +59,7 @@ class HomePageState extends State<HomePage> {
   int selectedDrawerIndex = 0;
   List<DrawerItem> drawItems = [];
   int selectedTabIndex = 0;
-  TextEditingController ticketNumberController = new TextEditingController();
+  TextEditingController ticketNumberController = TextEditingController();
 
   @override
   void initState() {
@@ -102,7 +102,7 @@ class HomePageState extends State<HomePage> {
       });
       SocketClient.subscribe("msg-messenger", (dynamic data) {
         int count = SocketClient.getEmitter().getListenersCount("onMessage");
-        var info = new ChatMessageModel(
+        var info = ChatMessageModel(
             message: data["message"],
             msgType: data["msgType"],
             type: "receiver",
@@ -143,23 +143,23 @@ class HomePageState extends State<HomePage> {
     pos += -1; //minus 1
     switch (pos) {
       case 0:
-        return new UserProfilePage();
+        return UserProfilePage();
       case 1:
-        return new SheltersPageList(key: UniqueKey());
+        return SheltersPageList(key: UniqueKey());
       case 2:
-        return new WeatherPageMaster();
+        return WeatherPageMaster();
       case 3:
-        return new ReportPage();
+        return ReportPage();
       case 4:
-        return new RecommendationPageList();
+        return RecommendationPageList();
       case 5:
-        return new NotificationsPage();
+        return NotificationsPage();
       case 6:
-        return new CollaboratorsPage();
+        return CollaboratorsPage();
       case 7:
-        return new AboutPage();
+        return AboutPage();
       default:
-        return new ErrorPage();
+        return ErrorPage();
     }
   }
 
@@ -178,15 +178,15 @@ class HomePageState extends State<HomePage> {
   onTabSelectItem(int index) {
     switch (index) {
       case 0:
-        return new StartPageView();
+        return StartPageView();
       case 1:
-        return new SheltersPageList(key: UniqueKey());
+        return SheltersPageList(key: UniqueKey());
       case 2:
-        return new WeatherPageView();
+        return WeatherPageView();
       case 3:
-        return new ChatsPageView();
+        return ChatsPageView();
       default:
-        return new ErrorPage();
+        return ErrorPage();
     }
   }
 
@@ -194,40 +194,40 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Provider.of<EventEmitterModel>(context);
     drawItems = [
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.home_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_0") ?? "Inicio"),
           ApplicationLocalizations.of(context)?.translate("menu_option_0") ?? "Inicio"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.person_outline,
               ApplicationLocalizations.of(context)?.translate("menu_option_1") ?? "Perfil"),
           ApplicationLocalizations.of(context)?.translate("menu_option_1") ?? "Perfil"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.pin_drop_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_2") ?? "Refugios"),
           ApplicationLocalizations.of(context)?.translate("menu_option_2") ?? "Refugios"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.cloud_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_3") ?? "Clima"),
           ApplicationLocalizations.of(context)?.translate("menu_option_3") ?? "Clima"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.videocam_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_4") ?? "Reportes"),
           ApplicationLocalizations.of(context)?.translate("menu_option_4") ?? "Reportes"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.thumb_up_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_6") ?? "Recomendaciones"),
           ApplicationLocalizations.of(context)?.translate("menu_option_6") ?? "Recomendaciones"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.notifications_active_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_7") ?? "Notificaciones",
               showBadge: true),
           ApplicationLocalizations.of(context)?.translate("menu_option_7") ?? "Notificaciones"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.group_work_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_8") ?? "Colaboradores"),
           ApplicationLocalizations.of(context)?.translate("menu_option_8") ?? "Colaboradores"),
-      new DrawerItem(
+      DrawerItem(
           _buildRow(Icons.info_outlined,
               ApplicationLocalizations.of(context)?.translate("menu_option_9") ?? "Acerca de"),
           ApplicationLocalizations.of(context)?.translate("menu_option_9") ?? "Acerca de"),
@@ -235,7 +235,7 @@ class HomePageState extends State<HomePage> {
     List<Widget> drawerOptions = []; //createDrawerHeader()
     for (var i = 0; i < drawItems.length; i++) {
       var item = drawItems[i];
-      drawerOptions.add(new ListTile(
+      drawerOptions.add(ListTile(
         title: item.title,
         contentPadding: EdgeInsets.zero,
         selected: i == selectedDrawerIndex,

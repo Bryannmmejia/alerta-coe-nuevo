@@ -38,7 +38,7 @@ class _StartPageState extends State<StartPageView> {
             ),
           )
         : _change == "remote" && !GlobalState.getInstance().isEvent
-            ? new DashboardPage()
-            : new MapPageView();
+                          ? DashboardPage()
+            : MapPageView();
   }
 }

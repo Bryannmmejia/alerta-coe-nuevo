@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GlobalState {
   //This creates the single instance by calling the `_internal` constructor specified below
-  static final GlobalState _singleton = new GlobalState._internal();
+  static final GlobalState _singleton = GlobalState._internal();
 
   GlobalState._internal();
 

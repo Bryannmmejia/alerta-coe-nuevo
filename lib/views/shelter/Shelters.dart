@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import '../../application_localizations.dart';
 import '../../services/HttpRequestHelper.dart';
 
-var _http = new HttpRequestHelper();
+var _http = HttpRequestHelper();
 var app = ApplicationDefault();
 
 class SheltersPageList extends StatefulWidget {
@@ -212,7 +212,7 @@ class _SheltersPageListState extends State<SheltersPageList> {
               ),
             ),
             Flexible(
-              child: new Container(
+              child: Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -238,7 +238,7 @@ class _SheltersPageListState extends State<SheltersPageList> {
                           width: 5,
                         ),
                         Flexible(
-                          child: new Container(
+                          child: Container(
                             child: Text(
                               filtered[index].provinceName,
                               overflow: TextOverflow.ellipsis,

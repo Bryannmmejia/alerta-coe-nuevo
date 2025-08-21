@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import '../../application_localizations.dart';
 import '../HomePage.dart';
 
-var wget = new MyWidgets();
+var wget = MyWidgets();
 var app = ApplicationDefault();
 
 class SignUpView extends StatefulWidget {
@@ -25,10 +25,10 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpView> {
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
-  TextEditingController fullNameController = new TextEditingController();
-  TextEditingController phoneController = new TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   late String provinceSelected;
   List<DropdownMenuItem> items = [];
   bool _passwordVisible = false;
@@ -133,7 +133,7 @@ class _SignUpPageState extends State<SignUpView> {
         'names': fullNameController.text.toUpperCase(),
         'phone': phoneController.text,
         'password': passwordController.text,
-        'lang': ApplicationLocalizations.of(context)?.appLocale,
+        'lang': ApplicationLocalizations.of(context)?.locale ?? 'es',
         'platform': Platform.operatingSystem
       };
       var response = await _http.postRequest("security/users", obj,
@@ -141,7 +141,7 @@ class _SignUpPageState extends State<SignUpView> {
       var result = HttpResponseModel.fromJson(json.decode(response!.body));
       //print(result.data);
       if (result.httpStatus == 200) {
-        GlobalState.getInstance().logonResult = new LogonData(
+        GlobalState.getInstance().logonResult = LogonData(
           provinceId: result.data['province'].toString(),
           fullName: result.data['names'],
           token: result.data['token'],
@@ -208,7 +208,7 @@ class _SignUpPageState extends State<SignUpView> {
   }
 
   Widget _emailPasswordWidget() {
-    return new Column(
+    return Column(
       children: <Widget>[
         SizedBox(
           height: 15,

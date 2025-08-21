@@ -15,7 +15,6 @@ import '../../application_localizations.dart';
 import '../HomePage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 
 var wget = MyWidgets();
 var app = ApplicationDefault();
@@ -40,10 +39,6 @@ class _LoginPageState extends State<LoginPage> {
   Future<dynamic> signInWithGoogle() async {
     try {
       GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-      if (googleSignInAccount == null) {
-        // El usuario canceló el login
-        return;
-      }
       GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
 
@@ -75,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
         'names': (_user.displayName ?? '').toUpperCase(),
         'phone': _user.phoneNumber ?? '',
         'password': '123456',
-        'lang': ApplicationLocalizations.of(context)?.appLocale,
+        'lang': ApplicationLocalizations.of(context)?.locale ?? 'es',
         'platform': Platform.operatingSystem,
         'from': 'gmail'
       };
@@ -125,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         'names': "Anonymous",
         'phone': "",
         'password': '123456',
-        'lang': ApplicationLocalizations.of(context)?.appLocale,
+        'lang': ApplicationLocalizations.of(context)?.locale ?? 'es',
         'platform': Platform.operatingSystem,
         'from': 'anonymous'
       };

@@ -1,7 +1,7 @@
 import 'dart:io'; //InternetAddress utility
 import 'dart:async'; //For StreamController/Stream
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class NetworkHelper {
     //This creates the single instance by calling the `_internal` constructor specified below

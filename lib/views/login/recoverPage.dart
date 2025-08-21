@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../application_localizations.dart';
 import '../../helper/myWidgets.dart';
 
-var wget = new MyWidgets();
+var wget = MyWidgets();
 var app = ApplicationDefault();
 var _http = HttpRequestHelper();
 
@@ -17,7 +17,7 @@ class RecoveryPassword extends StatefulWidget {
 }
 
 class _RecoveryPassword extends State<RecoveryPassword> {
-  TextEditingController emailController = new TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   void fnRecover() async {
     try {
@@ -64,14 +64,14 @@ class _RecoveryPassword extends State<RecoveryPassword> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(100.0)),
           ),
           builder: (BuildContext bc) {
-            return new Container(
+            return Container(
               height: MediaQuery.of(context).size.height, // * 0.4,
               width: MediaQuery.of(context).size.width,
               color: Colors.transparent,
-              child: new Container(
-                decoration: new BoxDecoration(
+              child: Container(
+                                  decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: new BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(10.0),
                         topRight: const Radius.circular(10.0))),
                 child: SingleChildScrollView(
